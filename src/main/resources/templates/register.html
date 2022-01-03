@@ -42,12 +42,14 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="course : ${wizard.courses}">
         <td th:text="${course.id}">id</td>
         <td th:text="${course.name}">name</td>
+        <td><a th:href="@{/course/delete(idCourse=${course.id}, idWizard=${wizard.id})}">Delete</a></td>
     </tr>
     </tbody>
 </table>

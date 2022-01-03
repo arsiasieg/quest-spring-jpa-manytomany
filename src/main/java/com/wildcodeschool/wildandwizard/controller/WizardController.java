@@ -96,8 +96,11 @@ public class WizardController {
 	@GetMapping("/course/delete")
 	public String deleteCourse(@RequestParam Long idCourse, @Valid @NotNull @RequestParam Long idWizard) {
 		Wizard wizard;
+		//On essaie de récupérer le wizard avec l'id donné. Sinon, on crée une exception avec un message
 		try {
+			//Si on trouve un wizard
 			wizard = wizardRepository.findById(idWizard).orElseThrow(() -> new Exception("Wizard not found"));
+			//On récupère la liste des courses du wizard en question et on supprime celui qu'on a sélectionné
 			for (Course course : wizard.getCourses()) {
 				if (course.getId() == idCourse) {
 					wizard.getCourses().remove(course);
